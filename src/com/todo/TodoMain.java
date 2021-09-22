@@ -14,8 +14,13 @@ public class TodoMain {
 		TodoList l = new TodoList();
 		boolean isList = false;
 		boolean quit = false;
+		
+		String filename = "todolist.txt";
+		TodoUtil.loadList(l, filename);
+
+		Menu.displaymenu();
 		do {
-			Menu.displaymenu();
+			Menu.prompt();
 			isList = false;
 			String choice = sc.next();
 			switch (choice) {
@@ -51,17 +56,26 @@ public class TodoMain {
 				l.sortByDate();
 				isList = true;
 				break;
-
+			
+			case "help":
+				Menu.displaymenu();
+				break;
+				
 			case "exit":
 				quit = true;
+				System.out.println("\n프로그램 종료 중 ...");
 				break;
 
 			default:
-				System.out.println("please enter one of the above mentioned command");
+				System.out.println(String.format("'%s' 명령어가 존재하지 않습니다 (도움말 - help)", choice));
 				break;
 			}
 			
-			if(isList) l.listAll();
+			if(isList) TodoUtil.listAll(l);
+			
 		} while (!quit);
+		
+		TodoUtil.saveList(l, filename);
+		System.out.println("\n저장되었습니다");
 	}
 }
