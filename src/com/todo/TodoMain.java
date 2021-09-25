@@ -14,6 +14,7 @@ public class TodoMain {
 		TodoList l = new TodoList();
 		boolean isList = false;
 		boolean quit = false;
+		String keyword;
 		
 		String filename = "todolist.txt";
 		TodoUtil.loadList(l, filename);
@@ -36,27 +37,45 @@ public class TodoMain {
 			case "edit":
 				TodoUtil.updateItem(l);
 				break;
+			
+			case "find":
+				keyword = sc.next();
+				TodoUtil.findItem(l, keyword, false);
+				break;
+			
+			case "find_cate":
+				keyword = sc.next();
+				TodoUtil.findItem(l, keyword, true);
+				break;
 				
 			case "ls":
 				TodoUtil.listAll(l);
 				break;
 
+			case "ls_cate":
+				TodoUtil.listCategories(l);
+				break;
+				
 			case "ls_name_asc":
-				l.sortByName();
+				l.sortByName(1);
 				isList = true;
 				break;
 
 			case "ls_name_desc":
-				l.sortByName();
-				l.reverseList();
+				l.sortByName(-1);
 				isList = true;
 				break;
 				
-			case "ls_date":
-				l.sortByDate();
+			case "ls_date_asc":
+				l.sortByDate(1);
 				isList = true;
 				break;
-			
+
+			case "ls_date_desc":
+				l.sortByDate(-1);
+				isList = true;
+				break;
+				
 			case "help":
 				Menu.displaymenu();
 				break;

@@ -16,6 +16,10 @@ public class TodoList {
 		list.add(t);
 	}
 
+	public void deleteItem(int no) {
+		list.remove(no);
+	}
+	
 	public void deleteItem(TodoItem t) {
 		list.remove(t);
 	}
@@ -30,11 +34,6 @@ public class TodoList {
 		return new ArrayList<TodoItem>(list);
 	}
 
-	public void sortByName() {
-		Collections.sort(list, new TodoSortByName());
-
-	}
-
 	// useless for now
 	public void listAll() {
 		System.out.println("\n"
@@ -43,13 +42,15 @@ public class TodoList {
 			System.out.println(myitem.getTitle() + myitem.getDesc());
 		}
 	}
-	
-	public void reverseList() {
-		Collections.reverse(list);
+
+	public void sortByName(int order) {
+		Collections.sort(list, new TodoSortByName());
+		if (order < 0) Collections.reverse(list);
 	}
 
-	public void sortByDate() {
+	public void sortByDate(int order) {
 		Collections.sort(list, new TodoSortByDate());
+		if (order < 0) Collections.reverse(list);
 	}
 
 	public int indexOf(TodoItem t) {
