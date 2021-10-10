@@ -11,10 +11,12 @@ public class Menu {
         System.out.println(String.format("%2d. %-15s : %s", ++no, "find_cate <key>", "카테고리 검색"));
         System.out.println(String.format("%2d. %-15s : %s", ++no, "ls", "항목 리스트 출력"));
         System.out.println(String.format("%2d. %-15s : %s", ++no, "ls_cate", "카테고리 목록 출력"));
-        System.out.println(String.format("%2d. %-15s : %s", ++no, "ls_name_asc", "항목 리스트를 제목 오름차순으로 정렬"));
+        System.out.println(String.format("%2d. %-15s : %s", ++no, "ls_name", "항목 리스트를 제목 오름차순으로 정렬"));
         System.out.println(String.format("%2d. %-15s : %s", ++no, "ls_name_desc", "항목 리스트를 제목 내림차순으로 정렬"));
-        System.out.println(String.format("%2d. %-15s : %s", ++no, "ls_date_asc", "항목 리스트를 오래된순으로 정렬"));
+        System.out.println(String.format("%2d. %-15s : %s", ++no, "ls_date", "항목 리스트를 오래된순으로 정렬"));
         System.out.println(String.format("%2d. %-15s : %s", ++no, "ls_date_desc", "항목 리스트를 최신순으로 정렬"));
+        System.out.println(String.format("%2d. %-15s : %s", ++no, "comp <no>", "항목 완료"));
+        System.out.println(String.format("%2d. %-15s : %s", ++no, "ls_comp", "완료된 항목 리스트 출력"));
         System.out.println(String.format("%2d. %-15s : %s", ++no, "help", "메뉴 재출력"));
         System.out.println(String.format("%2d. %-15s : %s", ++no, "exit", "프로그램 종료"));
     }

@@ -12,17 +12,16 @@ public class TodoMain {
 	
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
-		boolean isList = false;
 		boolean quit = false;
 		String keyword;
 		
-		String filename = "todolist.txt";
-		TodoUtil.loadList(l, filename);
-
+		// Data import completed
+//		l.importData("todolist.txt"); 
+		
 		Menu.displaymenu();
+		
 		do {
 			Menu.prompt();
-			isList = false;
 			String choice = sc.next();
 			switch (choice) {
 
@@ -53,27 +52,32 @@ public class TodoMain {
 				break;
 
 			case "ls_cate":
-				TodoUtil.listCategories(l);
+				TodoUtil.listCateAll(l);
 				break;
 				
-			case "ls_name_asc":
-				l.sortByName(1);
-				isList = true;
+			case "ls_name":
+				TodoUtil.listAll(l, "title", 1);
 				break;
 
 			case "ls_name_desc":
-				l.sortByName(-1);
-				isList = true;
+				TodoUtil.listAll(l, "title", 0);
 				break;
 				
-			case "ls_date_asc":
-				l.sortByDate(1);
-				isList = true;
+			case "ls_date":
+				TodoUtil.listAll(l, "current_date", 1);
 				break;
 
 			case "ls_date_desc":
-				l.sortByDate(-1);
-				isList = true;
+				TodoUtil.listAll(l, "current_date", 0);
+				break;
+				
+			case "comp":
+				int index = sc.nextInt();
+				TodoUtil.completeItem(l, index);
+				break;
+				
+			case "ls_comp":
+				TodoUtil.listCompleted(l);
 				break;
 				
 			case "help":
@@ -90,11 +94,9 @@ public class TodoMain {
 				break;
 			}
 			
-			if(isList) TodoUtil.listAll(l);
-			
 		} while (!quit);
 		
-		TodoUtil.saveList(l, filename);
-		System.out.println("\n저장되었습니다");
+		TodoList.closeConnection();
+		
 	}
 }
